@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../../../my_proj/books/templates/books"
+		},
+		{
+			"path": "../../../my_proj/books"
+		}
+	],
+	"settings": {}
+}

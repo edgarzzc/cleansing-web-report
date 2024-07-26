@@ -1,0 +1,14 @@
+/* Add this in style.css */
+.download-button {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #45a049; /* Darker green */
+}

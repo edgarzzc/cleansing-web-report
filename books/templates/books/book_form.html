@@ -1,0 +1,71 @@
+<p>Generated_CleanSheet_Name: {{ request.session.generated_file_name }}</p>
+<h1>Anotemos - LessonDepict Report Sheet Cleansing</h1>
+
+<form method="post" enctype="multipart/form-data" style="font-family: sans-serif;">
+    {% csrf_token %}
+    <div style="margin-bottom: 10px;">
+        <label for="file1" style="background-color: #f8f9fa; color: #495057; padding: 6px 12px; border: 1px solid #ced4da; border-radius: 0.25rem; margin-right: 10px; cursor: pointer; display: inline-block;">Choose an Anotemos Report</label>
+        <input type="file" id="file1" name="file1" style="display: none;" onchange="document.getElementById('file1-name').textContent = this.files[0].name">
+        <span id="file1-name" style="vertical-align: middle;">No file chosen</span>
+    </div>
+    <div style="margin-bottom: 10px;">
+        <label for="file2" style="background-color: #f8f9fa; color: #495057; padding: 6px 12px; border: 1px solid #ced4da; border-radius: 0.25rem; margin-right: 10px; cursor: pointer; display: inline-block;">Choose a LessonDepict Report</label>
+        <input type="file" id="file2" name="file2" style="display: none;" onchange="document.getElementById('file2-name').textContent = this.files[0].name">
+        <span id="file2-name" style="vertical-align: middle;">No file chosen</span>
+    </div>
+    <button type="submit" style="background-color: #007bff; color: white; padding: 6px 12px; border: none; border-radius: 0.25rem; cursor: pointer;">Upload</button>
+</form>
+
+<script>
+    // If you want to show the file name when a file is selected
+    document.getElementById('file1').addEventListener('change', function() {
+        document.getElementById('file1-name').textContent = this.files[0].name;
+    });
+    document.getElementById('file2').addEventListener('change', function() {
+        document.getElementById('file2-name').textContent = this.files[0].name;
+    });
+</script>
+
+<script>
+    // If you want to show the file name when a file is selected
+    document.getElementById('file1').addEventListener('change', function() {
+        document.getElementById('file1-name').textContent = this.files[0].name;
+    });
+    document.getElementById('file2').addEventListener('change', function() {
+        document.getElementById('file2-name').textContent = this.files[0].name;
+    });
+</script> 
+
+
+{% if error_message %}
+    <div class="alert alert-danger">
+        {{ error_message }}
+    </div>
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {% if message.tags == 'success' %}
+                Your reports have been successfully cleansed.<br>
+                Please rename the first two sheets in the cleansed file to correspond original files: '{{ request.session.file1_name }}' and '{{ request.session.file2_name }}'.
+            {% else %}
+                {{ message }}
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!-- {% if 'generated_file_name' in request.session %}
+    <a href="{% url 'download_excel' %}" class="btn btn-primary" style="margin-top: 10px;">Download Excel File</a>
+{% endif %} -->
+
+
+{% if 'generated_file_name' in request.session %}
+<a href="{% url 'download_excel' %}" style="text-decoration: none; padding: 8px 12px; background-color: #4CAF50; color: white; border-radius: 5px; display: inline-block; transition: background-color 0.3s ease; font-size: 14px;" class="btn btn-primary" style="margin-top: 10px;">Download Excel File</a>
+{% endif %}
+
+
+
+
+
